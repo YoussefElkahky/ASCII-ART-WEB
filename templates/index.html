@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ASCII Art Web</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>ASCII Art Web</h1>
+
+    <form action="/ascii-art" method="POST">
+        <label for="text">Text</label>
+        <input type="text" id="text" name="text" value="{{.Text}}" placeholder="Type something..." required>
+
+        <fieldset>
+            <legend>Banner</legend>
+
+            <label>
+                <input type="radio" name="banner" value="standard" {{if eq .Banner "standard"}}checked{{end}}>
+                standard
+            </label>
+
+            <label>
+                <input type="radio" name="banner" value="shadow" {{if eq .Banner "shadow"}}checked{{end}}>
+                shadow
+            </label>
+
+            <label>
+                <input type="radio" name="banner" value="thinkertoy" {{if eq .Banner "thinkertoy"}}checked{{end}}>
+                thinkertoy
+            </label>
+        </fieldset>
+
+        <button type="submit">Generate</button>
+    </form>
+
+    {{if .Error}}
+        <p class="error">{{.Error}}</p>
+    {{end}}
+
+    {{if .Result}}
+        <pre class="result">{{.Result}}</pre>
+    {{end}}
+</body>
+</html>
